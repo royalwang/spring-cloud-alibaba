@@ -29,10 +29,5 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-//	@Bean
-//	public UserConfig userConfig() {
-//		return new UserConfig();
-//	}
-
 }
 

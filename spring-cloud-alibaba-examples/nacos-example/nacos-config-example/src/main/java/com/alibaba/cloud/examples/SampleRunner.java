@@ -21,29 +21,10 @@ class SampleRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         nacosConfigManager.getConfigService().addListener(
-                "nacos-config-custom.properties", "DEFAULT_GROUP", new Listener() {
-
-                    /**
-                     * Callback with latest config data.
-                     * @param configInfo latest config data for specific dataId in Nacos
-                     * server
-                     */
-                    @Override
-                    public void receiveConfigInfo(String configInfo) {
-                        Properties properties = new Properties();
-                        try {
-                            properties.load(new StringReader(configInfo));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        System.out.println("config changed: " + properties);
-                    }
-
-                    @Override
-                    public Executor getExecutor() {
-                        return null;
-                    }
-                });
+                "nacos-config-custom.properties",
+                "DEFAULT_GROUP",
+                new NacosListener()
+        );
     }
 
 }
